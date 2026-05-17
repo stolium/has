@@ -1,5 +1,6 @@
 import { useGameState } from './hooks/useGameState';
 import { GateScreen } from './components/GateScreen';
+import { SeekerDashboard } from './components/seeker/SeekerDashboard';
 
 export default function App() {
   const { state, dispatch } = useGameState();
@@ -9,7 +10,7 @@ export default function App() {
       <div className="max-w-md mx-auto min-h-screen flex flex-col p-4">
         {state.role === null && <GateScreen dispatch={dispatch} />}
         {state.role === 'seeker' && (
-          <div className="text-center mt-8">Seeker Dashboard (coming soon)</div>
+          <SeekerDashboard state={state} dispatch={dispatch} />
         )}
         {state.role === 'hider' && (
           <div className="text-center mt-8">Hider Dashboard (coming soon)</div>
