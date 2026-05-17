@@ -92,6 +92,15 @@ export const HINTS: Hint[] = [
     timerLabel: '5 min',
   },
   {
+    id: 'loc-underground-passage-radar',
+    category: 'location',
+    text: 'Underground passage radar — every underground creates its own 800m radius radar. Is the hider inside any cinema radar?',
+    pickCount: 3,
+    drawCount: 2,
+    timerSeconds: 300,
+    timerLabel: '5 min',
+  },
+  {
     id: 'loc-same-district',
     category: 'location',
     text: 'Is the hider in the same district as the seekers?',

@@ -1,4 +1,5 @@
 import { GameAction } from '../../hooks/useGameState';
+import { useI18n } from '../../i18n/context';
 
 interface DraftTriggerProps {
   canDraft: boolean;
@@ -6,6 +7,8 @@ interface DraftTriggerProps {
 }
 
 export function DraftTrigger({ canDraft, dispatch }: DraftTriggerProps) {
+  const { t } = useI18n();
+
   const handleDraft = (pickCount: number, drawCount: number) => {
     dispatch({ type: 'START_DRAFT', pickCount, drawCount });
   };
@@ -13,7 +16,7 @@ export function DraftTrigger({ canDraft, dispatch }: DraftTriggerProps) {
   if (!canDraft) {
     return (
       <div className="bg-slate-800/40 border border-slate-800 rounded-xl p-4 text-center text-xs text-slate-500 italic">
-        No cards available to draft.
+        {t('draft.noCards')}
       </div>
     );
   }
@@ -21,23 +24,23 @@ export function DraftTrigger({ canDraft, dispatch }: DraftTriggerProps) {
   return (
     <div className="bg-slate-800/40 border border-slate-800 rounded-xl p-4">
       <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
-        Start Draft
+        {t('draft.title')}
       </h3>
       <p className="text-xs text-slate-500 mb-3">
-        When seekers ask a hint, start a draft matching the hint's reward tier.
+        {t('draft.description')}
       </p>
       <div className="flex gap-2">
         <button
           onClick={() => handleDraft(3, 2)}
           className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg text-sm transition"
         >
-          Pick 3, Draw 2
+          {t('draft.pick3draw2')}
         </button>
         <button
           onClick={() => handleDraft(2, 1)}
           className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg text-sm transition"
         >
-          Pick 2, Draw 1
+          {t('draft.pick2draw1')}
         </button>
       </div>
     </div>

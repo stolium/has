@@ -1,8 +1,18 @@
+export type CastingCostAction =
+  | { kind: 'cards'; count: number }
+  | { kind: 'all' }
+  | { kind: 'time_bonus_minutes'; minMinutes: number };
+
+export interface CastingCost {
+  label: string;
+  action?: CastingCostAction;
+}
+
 export interface Card {
   id: string;
   type: 'curse' | 'time_bonus' | 'veto' | 'randomize';
   name: string;
-  castingCost?: string;
+  castingCost?: CastingCost;
   effect: string;
   value?: number;
 }
@@ -18,6 +28,8 @@ export interface Hint {
 }
 
 export type Role = 'hider' | 'seeker' | null;
+
+export const MAX_HAND_SIZE = 6;
 
 export interface GameState {
   role: Role;
@@ -35,4 +47,5 @@ export interface GameState {
   draftPool: Card[];
   draftSelections: string[];
   draftDrawCount: number;
+  pendingHandDiscard: number;
 }

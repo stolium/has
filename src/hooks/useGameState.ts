@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from 'react';
-import { GameState, Card } from '../data/types';
+import { GameState, Card, MAX_HAND_SIZE } from '../data/types';
 import { buildDeck } from '../data/cards';
 
 const STORAGE_KEY = 'hunt-game-state';
@@ -26,6 +26,7 @@ function createInitialState(): GameState {
     draftPool: [],
     draftSelections: [],
     draftDrawCount: 0,
+    pendingHandDiscard: 0,
   };
 }
 
@@ -54,7 +55,9 @@ export type GameAction =
   | { type: 'TOGGLE_DRAFT_SELECTION'; cardId: string }
   | { type: 'CONFIRM_DRAFT' }
   | { type: 'PLAY_CARD'; cardId: string }
-  | { type: 'DISCARD_CARD'; cardId: string };
+  | { type: 'PLAY_CARD_WITH_DISCARD'; cardId: string; discardCardIds: string[] }
+  | { type: 'DISCARD_CARD'; cardId: string }
+  | { type: 'DISCARD_OVERFLOW'; discardCardIds: string[] };
 
 function ensureDrawPile(state: GameState, needed: number): GameState {
   if (state.drawPile.length >= needed) return state;
@@ -125,26 +128,18 @@ function reducer(state: GameState, action: GameAction): GameState {
         }
       }
 
-      const newHand = [...state.hand];
-      const newScoreLedger = [...state.scoreLedger];
-      for (const card of selected) {
-        if (card.type === 'time_bonus') {
-          newScoreLedger.push(card);
-        } else {
-          newHand.push(card);
-        }
-      }
-
+      const newHand = [...state.hand, ...selected];
       const newDrawPile = shuffleArray([...state.drawPile, ...unselected]);
+      const overflow = Math.max(0, newHand.length - MAX_HAND_SIZE);
 
       return {
         ...state,
         hand: newHand,
-        scoreLedger: newScoreLedger,
         drawPile: newDrawPile,
         draftPool: [],
         draftSelections: [],
         draftDrawCount: 0,
+        pendingHandDiscard: overflow,
       };
     }
 
@@ -152,11 +147,43 @@ function reducer(state: GameState, action: GameAction): GameState {
       const cardIndex = state.hand.findIndex((c) => c.id === action.cardId);
       if (cardIndex === -1) return state;
       const card = state.hand[cardIndex];
-      return {
-        ...state,
-        hand: state.hand.filter((_, i) => i !== cardIndex),
-        discardPile: [...state.discardPile, card],
-      };
+      const newHand = state.hand.filter((_, i) => i !== cardIndex);
+      if (card.type === 'time_bonus') {
+        return { ...state, hand: newHand, scoreLedger: [...state.scoreLedger, card] };
+      }
+      return { ...state, hand: newHand, discardPile: [...state.discardPile, card] };
+    }
+
+    case 'PLAY_CARD_WITH_DISCARD': {
+      const playedIndex = state.hand.findIndex((c) => c.id === action.cardId);
+      if (playedIndex === -1) return state;
+      const playedCard = state.hand[playedIndex];
+      const discardSet = new Set(action.discardCardIds);
+      const newHand: Card[] = [];
+      const newDiscard = [...state.discardPile, playedCard];
+      for (const c of state.hand) {
+        if (c.id === action.cardId) continue;
+        if (discardSet.has(c.id)) {
+          newDiscard.push(c);
+        } else {
+          newHand.push(c);
+        }
+      }
+      return { ...state, hand: newHand, discardPile: newDiscard };
+    }
+
+    case 'DISCARD_OVERFLOW': {
+      const discardSet = new Set(action.discardCardIds);
+      const newHand: Card[] = [];
+      const newDiscard = [...state.discardPile];
+      for (const c of state.hand) {
+        if (discardSet.has(c.id)) {
+          newDiscard.push(c);
+        } else {
+          newHand.push(c);
+        }
+      }
+      return { ...state, hand: newHand, discardPile: newDiscard, pendingHandDiscard: 0 };
     }
 
     case 'DISCARD_CARD': {

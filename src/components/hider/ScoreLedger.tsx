@@ -1,10 +1,12 @@
 import { Card } from '../../data/types';
+import { useI18n } from '../../i18n/context';
 
 interface ScoreLedgerProps {
   scoreLedger: Card[];
 }
 
 export function ScoreLedger({ scoreLedger }: ScoreLedgerProps) {
+  const { t } = useI18n();
   const totalScore = scoreLedger.reduce((sum, c) => sum + (c.value ?? 0), 0);
 
   return (
@@ -13,11 +15,11 @@ export function ScoreLedger({ scoreLedger }: ScoreLedgerProps) {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">
-              Time Bonus Score
+              {t('score.title')}
             </div>
             <div className="text-2xl font-black text-emerald-400">
               +{totalScore}{' '}
-              <span className="text-xs text-slate-300 font-normal">mins</span>
+              <span className="text-xs text-slate-300 font-normal">{t('score.mins')}</span>
             </div>
           </div>
         </div>
@@ -29,7 +31,7 @@ export function ScoreLedger({ scoreLedger }: ScoreLedgerProps) {
                 className="bg-emerald-950/30 border border-emerald-900/60 rounded-lg p-1.5 text-center min-w-[60px] shrink-0"
               >
                 <span className="text-emerald-400 text-sm font-black block">
-                  {card.name}
+                  {t(`card.${card.id}.name`)}
                 </span>
               </div>
             ))}

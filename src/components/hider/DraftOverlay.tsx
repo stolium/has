@@ -1,5 +1,6 @@
 import { Card } from '../../data/types';
 import { GameAction } from '../../hooks/useGameState';
+import { useI18n } from '../../i18n/context';
 
 interface DraftOverlayProps {
   draftPool: Card[];
@@ -16,25 +17,32 @@ const TYPE_COLORS: Record<string, string> = {
 };
 
 export function DraftOverlay({ draftPool, draftSelections, draftDrawCount, dispatch }: DraftOverlayProps) {
+  const { t } = useI18n();
   const canConfirm = draftSelections.length === draftDrawCount;
+
+  const selectHeading = draftDrawCount > 1
+    ? t('draft.selectCardsPlural', { count: draftDrawCount })
+    : t('draft.selectCards', { count: draftDrawCount });
 
   return (
     <div className="fixed inset-0 bg-slate-950/95 z-50 flex flex-col p-4 overflow-y-auto">
       <div className="text-center mb-6 mt-4">
         <span className="text-[10px] font-bold tracking-widest text-indigo-400 bg-indigo-950 px-3 py-1 rounded-full border border-indigo-900/60 uppercase">
-          Draft Phase
+          {t('draft.phase')}
         </span>
         <h2 className="text-2xl font-black text-slate-100 mt-3 uppercase">
-          Select {draftDrawCount} Card{draftDrawCount > 1 ? 's' : ''}
+          {selectHeading}
         </h2>
         <p className="text-xs text-slate-400 mt-1 max-w-xs mx-auto">
-          Time bonuses go to your score. Curses and powerups go to your hand. Unchosen cards return to the deck.
+          {t('draft.instructions')}
         </p>
       </div>
 
       <div className="space-y-2 mb-6 flex-1">
         {draftPool.map((card) => {
           const isSelected = draftSelections.includes(card.id);
+          const cardName = t(`card.${card.id}.name`);
+          const cardEffect = t(`card.${card.id}.effect`);
           return (
             <div
               key={card.id}
@@ -49,10 +57,10 @@ export function DraftOverlay({ draftPool, draftSelections, draftDrawCount, dispa
                 <span
                   className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${TYPE_COLORS[card.type] ?? 'bg-slate-800 text-slate-300 border-slate-700'}`}
                 >
-                  {card.type.replace('_', ' ')}
+                  {t(`type.${card.type}`)}
                 </span>
-                <h4 className="font-extrabold text-base text-slate-100 mt-1">{card.name}</h4>
-                <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{card.effect}</p>
+                <h4 className="font-extrabold text-base text-slate-100 mt-1">{cardName}</h4>
+                <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{cardEffect}</p>
               </div>
               <div
                 className={`w-6 h-6 rounded-md border flex items-center justify-center shrink-0 ${
@@ -78,7 +86,7 @@ export function DraftOverlay({ draftPool, draftSelections, draftDrawCount, dispa
               : 'bg-slate-800 text-slate-500 cursor-not-allowed'
           }`}
         >
-          Confirm Selection ({draftSelections.length}/{draftDrawCount})
+          {t('draft.confirm', { current: draftSelections.length, total: draftDrawCount })}
         </button>
       </div>
     </div>
