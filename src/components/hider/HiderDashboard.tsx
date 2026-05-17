@@ -2,6 +2,7 @@ import { GameState } from '../../data/types';
 import { GameAction } from '../../hooks/useGameState';
 import { ScoreLedger } from './ScoreLedger';
 import { DraftTrigger } from './DraftTrigger';
+import { DraftOverlay } from './DraftOverlay';
 
 interface HiderDashboardProps {
   state: GameState;
@@ -70,6 +71,15 @@ export function HiderDashboard({ state, dispatch }: HiderDashboardProps) {
           <div className="text-sm text-slate-500 italic">Cards will render here (next task)</div>
         )}
       </div>
+
+      {state.draftPool.length > 0 && (
+        <DraftOverlay
+          draftPool={state.draftPool}
+          draftSelections={state.draftSelections}
+          draftDrawCount={state.draftDrawCount}
+          dispatch={dispatch}
+        />
+      )}
 
       <ScoreLedger scoreLedger={state.scoreLedger} />
     </div>
