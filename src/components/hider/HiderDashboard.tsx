@@ -3,6 +3,7 @@ import { GameAction } from '../../hooks/useGameState';
 import { ScoreLedger } from './ScoreLedger';
 import { DraftTrigger } from './DraftTrigger';
 import { DraftOverlay } from './DraftOverlay';
+import { CardInHand } from './CardInHand';
 
 interface HiderDashboardProps {
   state: GameState;
@@ -68,7 +69,11 @@ export function HiderDashboard({ state, dispatch }: HiderDashboardProps) {
             No curses or powerups in hand. Start a draft to get cards.
           </div>
         ) : (
-          <div className="text-sm text-slate-500 italic">Cards will render here (next task)</div>
+          <div className="space-y-2">
+            {state.hand.map((card) => (
+              <CardInHand key={card.id} card={card} dispatch={dispatch} />
+            ))}
+          </div>
         )}
       </div>
 
