@@ -21,7 +21,8 @@ const CURSES: Card[] = [
   makeCurse('curse-hidden-hangman', 'Curse of the Hidden Hangman', 'Discard 2 cards', 'Seekers must beat the hider in a 5-letter game of Hangman before moving or asking questions.', { kind: 'cards', count: 2 }),
   // makeCurse('curse-overflowing-chalice', 'Curse of the Overflowing Chalice', 'Discard 1 card', 'For the next 3 questions, the hider draws an extra card from the deck.', { kind: 'cards', count: 1 }),
   makeCurse('curse-impressionable-consumer', 'Curse of the Impressionable Consumer', "Seekers' next question is free", 'Seekers must physically buy a product or enter a location they spot on a real-world advertisement.'),
-  makeCurse('curse-town-hall', 'Town Hall Census Curse', "Seekers' next question is free", "Seekers must go to a local town hall and guess its jurisdiction's population within 25%."),
+  makeCurse('curse-district-population', 'District Census Curse', "Seekers' next question is free", "Seekers must guess districts jurisdiction's population within 25%."),
+  // makeCurse('curse-town-hall', 'Town Hall Census Curse', "Seekers' next question is free", "Seekers must go to a local town hall and guess its jurisdiction's population within 25%."),
   makeCurse('curse-long-distance-die', 'Long-Distance Die Roll', 'None', 'Seekers must roll a physical die 100 feet away using only gravity/momentum to land a 5 or 6.'),
 ];
 

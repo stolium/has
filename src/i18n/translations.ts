@@ -163,6 +163,12 @@ const en: Record<string, string> = {
   'card.curse-town-hall.castingCost': "Seekers' next question is free",
   'card.curse-town-hall.effect': "Seekers must go to a local town hall and guess its jurisdiction's population within 25%.",
 
+
+  'card.curse-district-population.name': 'District Census Curse',
+  'card.curse-district-population.castingCost': "Seekers' next question is free",
+  'card.curse-district-population.effect': 'Seekers must guess current district jurisdiction\'s population within 25%. If they fail - 5 minutes freeze.',
+
+
   'card.curse-long-distance-die.name': 'Long-Distance Die Roll',
   'card.curse-long-distance-die.castingCost': 'None',
   'card.curse-long-distance-die.effect': 'Seekers must roll a physical die 100 feet away using only gravity/momentum to land a 5 or 6.',
@@ -348,6 +354,10 @@ const ru: Record<string, string> = {
   'card.curse-town-hall.name': 'Проклятие городской переписи',
   'card.curse-town-hall.castingCost': 'Следующий вопрос искателей бесплатен',
   'card.curse-town-hall.effect': 'Искатели должны пойти в местную администрацию и угадать население района с точностью 25%.',
+
+  'card.curse-district-population.name': 'Проклятие районной переписи переписи',
+  'card.curse-district-population.castingCost': 'Следующий вопрос искателей бесплатен',
+  'card.curse-district-population.effect': 'Искатели должны угадать население района в котором находятся с точностью 25%. Если искатели проваливают испытание - 5 минутный фриз.',
 
   'card.curse-long-distance-die.name': 'Дальний бросок кубика',
   'card.curse-long-distance-die.castingCost': 'Нет',
