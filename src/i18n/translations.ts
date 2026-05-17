@@ -169,6 +169,11 @@ const en: Record<string, string> = {
   'card.curse-district-population.effect': 'Seekers must guess current district jurisdiction\'s population within 25%. If they fail - 5 minutes freeze.',
 
 
+  'card.curse-of-right-turn.name': 'Curse of right turn',
+  'card.curse-of-right-turn.castingCost': "Discard 2 cards",
+  'card.curse-of-right-turn.effect': 'Seekers must turn only right on each named cross next 20 minutes.',
+
+
   'card.curse-long-distance-die.name': 'Long-Distance Die Roll',
   'card.curse-long-distance-die.castingCost': 'None',
   'card.curse-long-distance-die.effect': 'Seekers must roll a physical die 100 feet away using only gravity/momentum to land a 5 or 6.',
@@ -362,6 +367,12 @@ const ru: Record<string, string> = {
   'card.curse-long-distance-die.name': 'Дальний бросок кубика',
   'card.curse-long-distance-die.castingCost': 'Нет',
   'card.curse-long-distance-die.effect': 'Искатели должны бросить кубик на расстоянии 30 м, используя только гравитацию, чтобы выпало 5 или 6.',
+
+
+  'card.curse-of-right-turn.name': 'Проклятье правкого поворота',
+  'card.curse-of-right-turn.castingCost': 'Сбросьте 2 карты',
+  'card.curse-of-right-turn.effect': 'Искатели должны поворачивать только направо на всех перекрестках именованных улиц следующие 20 минутю',
+
 
   // Card texts — Time Bonuses
   'card.tb-5.name': '+5 минут',
