@@ -3,6 +3,7 @@ import { GameAction } from '../../hooks/useGameState';
 import { HINTS } from '../../data/hints';
 import { HintCard } from './HintCard';
 import { TimerOverlay } from './TimerOverlay';
+import { UsedHintsLog } from './UsedHintsLog';
 
 interface SeekerDashboardProps {
   state: GameState;
@@ -84,6 +85,8 @@ export function SeekerDashboard({ state, dispatch }: SeekerDashboardProps) {
           </div>
         </div>
       ))}
+      <UsedHintsLog usedHints={state.usedHints} />
+
       {state.activeHint && (() => {
         const activeHintData = HINTS.find((h) => h.id === state.activeHint);
         if (!activeHintData) return null;
