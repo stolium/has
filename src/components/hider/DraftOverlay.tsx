@@ -62,7 +62,7 @@ export function DraftOverlay({ draftPool, draftSelections, draftDrawCount, dispa
                 </span>
                 <h4 className="font-extrabold text-base text-slate-100 mt-1">{cardName}</h4>
                 <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{cardEffect}</p>
-                <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{cardCost}</p>
+                  {['curse', 'veto', 'randomize'].includes(card.type) &&  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{cardCost}</p>}
               </div>
               <div
                 className={`w-6 h-6 rounded-md border flex items-center justify-center shrink-0 ${
