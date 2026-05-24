@@ -43,6 +43,7 @@ export function DraftOverlay({ draftPool, draftSelections, draftDrawCount, dispa
           const isSelected = draftSelections.includes(card.id);
           const cardName = t(`card.${card.id}.name`);
           const cardEffect = t(`card.${card.id}.effect`);
+          const cardCost = t(`card.${card.id}.castingCost`);
           return (
             <div
               key={card.id}
@@ -61,6 +62,7 @@ export function DraftOverlay({ draftPool, draftSelections, draftDrawCount, dispa
                 </span>
                 <h4 className="font-extrabold text-base text-slate-100 mt-1">{cardName}</h4>
                 <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{cardEffect}</p>
+                <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{cardCost}</p>
               </div>
               <div
                 className={`w-6 h-6 rounded-md border flex items-center justify-center shrink-0 ${
