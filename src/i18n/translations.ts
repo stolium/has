@@ -171,7 +171,19 @@ const en: Record<string, string> = {
 
   'card.curse-of-right-turn.name': 'Curse of right turn',
   'card.curse-of-right-turn.castingCost': "Discard 2 cards",
-  'card.curse-of-right-turn.effect': 'Seekers must turn only right on each named cross next 20 minutes.',
+  'card.curse-of-right-turn.effect': 'Seekers can\'t turn left on any named cross next 20 minutes.',
+
+
+  'card.curse-of-instant-red-light.name': 'Curse of red light',
+  'card.curse-of-instant-red-light.castingCost': "Discard 2 cards",
+  'card.curse-of-instant-red-light.effect': 'Seeker must roll the dice on each traffic light, if it\s less than 4 than it\'s red red light',
+
+
+  'card.curse-of-top-gear.name': 'Curse of top gear',
+  'card.curse-of-top-gear.castingCost': "Discard 1 card",
+  'card.curse-of-top-gear.effect': 'Seeker must must only use lowest gear for next 10 minutes.',
+
+
 
 
   'card.curse-long-distance-die.name': 'Long-Distance Die Roll',
@@ -371,7 +383,16 @@ const ru: Record<string, string> = {
 
   'card.curse-of-right-turn.name': 'Проклятье правкого поворота',
   'card.curse-of-right-turn.castingCost': 'Сбросьте 2 карты',
-  'card.curse-of-right-turn.effect': 'Искатели должны поворачивать только направо на всех перекрестках именованных улиц следующие 20 минутю',
+  'card.curse-of-right-turn.effect': 'Искателям нельзя поворачивать налево на любых перекрестках именованных улиц следующие 20 минутю',
+
+  'card.curse-of-instant-red-light.name': 'Проклятие красного цвета',
+  'card.curse-of-instant-red-light.castingCost': "Сбросьте 2 карты",
+  'card.curse-of-instant-red-light.effect': 'Икатели должны кидать кубик, каждый раз когда нужно пересь дорогу со светофором, если выпадает меньше 4, значит проезд закрыт.',
+
+
+  'card.curse-of-top-gear.name': 'Проклятие top gear',
+  'card.curse-of-top-gear.castingCost': "Сбросьте 1 карту",
+  'card.curse-of-top-gear.effect': 'Икатели должны использовать только самую медленную передачу для передвижения в течении следующих 10 минут.',
 
 
   // Card texts — Time Bonuses

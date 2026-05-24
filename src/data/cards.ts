@@ -25,6 +25,8 @@ const CURSES: Card[] = [
   // makeCurse('curse-town-hall', 'Town Hall Census Curse', "Seekers' next question is free", "Seekers must go to a local town hall and guess its jurisdiction's population within 25%."),
   // makeCurse('curse-long-distance-die', 'Long-Distance Die Roll', 'None', 'Seekers must roll a physical die 100 feet away using only gravity/momentum to land a 5 or 6.'),
   makeCurse('curse-of-right-turn', 'Curse of right turn', 'Discard 2 cards', 'Seekers must turn only right on each named cross next 20 minutes.', { kind: 'cards', count: 2 }),
+  makeCurse('curse-of-instant-red-light', 'Curse of red light', 'Discard 2 cards', 'Seeker must roll the dice on each traffic light, if it\s less than 4 than it\'s red red light', { kind: 'cards', count: 2 }),
+  makeCurse('curse-of-top-gear', 'Curse of top gear', 'Discard 1 cards', 'Seeker must must only use lowest gear for next 10 minutes.', { kind: 'cards', count: 2 }),
 ];
 
 const POWERUPS_TEMPLATE: Card[] = [
